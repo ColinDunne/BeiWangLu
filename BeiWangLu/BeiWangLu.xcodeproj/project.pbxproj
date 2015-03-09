@@ -14,6 +14,7 @@
 		D03F8F0C1AAD7C02002A0DA2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03F8F0A1AAD7C02002A0DA2 /* LaunchScreen.xib */; };
 		D03F8F181AAD7C02002A0DA2 /* BeiWangLuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F171AAD7C02002A0DA2 /* BeiWangLuTests.m */; };
 		D03F8F231AAD7CE0002A0DA2 /* BWLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */; };
+		D03F8F271AAD9803002A0DA2 /* BWLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F261AAD9803002A0DA2 /* BWLItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		D03F8F171AAD7C02002A0DA2 /* BeiWangLuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeiWangLuTests.m; sourceTree = "<group>"; };
 		D03F8F211AAD7CE0002A0DA2 /* BWLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWLTableViewController.h; sourceTree = "<group>"; };
 		D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWLTableViewController.m; sourceTree = "<group>"; };
+		D03F8F251AAD9803002A0DA2 /* BWLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWLItem.h; sourceTree = "<group>"; };
+		D03F8F261AAD9803002A0DA2 /* BWLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWLItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		D03F8EFA1AAD7C02002A0DA2 /* BeiWangLu */ = {
 			isa = PBXGroup;
 			children = (
+				D03F8F241AAD97D1002A0DA2 /* Model */,
 				D03F8F211AAD7CE0002A0DA2 /* BWLTableViewController.h */,
 				D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */,
 				D03F8F051AAD7C02002A0DA2 /* Main.storyboard */,
@@ -117,6 +121,15 @@
 				D03F8F161AAD7C02002A0DA2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D03F8F241AAD97D1002A0DA2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D03F8F251AAD9803002A0DA2 /* BWLItem.h */,
+				D03F8F261AAD9803002A0DA2 /* BWLItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03F8F271AAD9803002A0DA2 /* BWLItem.m in Sources */,
 				D03F8F231AAD7CE0002A0DA2 /* BWLTableViewController.m in Sources */,
 				D03F8F011AAD7C02002A0DA2 /* AppDelegate.m in Sources */,
 				D03F8EFE1AAD7C02002A0DA2 /* main.m in Sources */,
