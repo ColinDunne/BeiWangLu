@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		D03F8EFE1AAD7C02002A0DA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8EFD1AAD7C02002A0DA2 /* main.m */; };
 		D03F8F011AAD7C02002A0DA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F001AAD7C02002A0DA2 /* AppDelegate.m */; };
-		D03F8F041AAD7C02002A0DA2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F031AAD7C02002A0DA2 /* ViewController.m */; };
 		D03F8F071AAD7C02002A0DA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D03F8F051AAD7C02002A0DA2 /* Main.storyboard */; };
 		D03F8F091AAD7C02002A0DA2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D03F8F081AAD7C02002A0DA2 /* Images.xcassets */; };
 		D03F8F0C1AAD7C02002A0DA2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03F8F0A1AAD7C02002A0DA2 /* LaunchScreen.xib */; };
 		D03F8F181AAD7C02002A0DA2 /* BeiWangLuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F171AAD7C02002A0DA2 /* BeiWangLuTests.m */; };
+		D03F8F231AAD7CE0002A0DA2 /* BWLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +32,14 @@
 		D03F8EFD1AAD7C02002A0DA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D03F8EFF1AAD7C02002A0DA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D03F8F001AAD7C02002A0DA2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D03F8F021AAD7C02002A0DA2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D03F8F031AAD7C02002A0DA2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D03F8F061AAD7C02002A0DA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D03F8F081AAD7C02002A0DA2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D03F8F0B1AAD7C02002A0DA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D03F8F111AAD7C02002A0DA2 /* BeiWangLuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeiWangLuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03F8F161AAD7C02002A0DA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D03F8F171AAD7C02002A0DA2 /* BeiWangLuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeiWangLuTests.m; sourceTree = "<group>"; };
+		D03F8F211AAD7CE0002A0DA2 /* BWLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWLTableViewController.h; sourceTree = "<group>"; };
+		D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWLTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +81,9 @@
 		D03F8EFA1AAD7C02002A0DA2 /* BeiWangLu */ = {
 			isa = PBXGroup;
 			children = (
-				D03F8EFF1AAD7C02002A0DA2 /* AppDelegate.h */,
-				D03F8F001AAD7C02002A0DA2 /* AppDelegate.m */,
-				D03F8F021AAD7C02002A0DA2 /* ViewController.h */,
-				D03F8F031AAD7C02002A0DA2 /* ViewController.m */,
+				D03F8F211AAD7CE0002A0DA2 /* BWLTableViewController.h */,
+				D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */,
 				D03F8F051AAD7C02002A0DA2 /* Main.storyboard */,
-				D03F8F081AAD7C02002A0DA2 /* Images.xcassets */,
-				D03F8F0A1AAD7C02002A0DA2 /* LaunchScreen.xib */,
 				D03F8EFB1AAD7C02002A0DA2 /* Supporting Files */,
 			);
 			path = BeiWangLu;
@@ -96,6 +92,10 @@
 		D03F8EFB1AAD7C02002A0DA2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D03F8EFF1AAD7C02002A0DA2 /* AppDelegate.h */,
+				D03F8F001AAD7C02002A0DA2 /* AppDelegate.m */,
+				D03F8F081AAD7C02002A0DA2 /* Images.xcassets */,
+				D03F8F0A1AAD7C02002A0DA2 /* LaunchScreen.xib */,
 				D03F8EFC1AAD7C02002A0DA2 /* Info.plist */,
 				D03F8EFD1AAD7C02002A0DA2 /* main.m */,
 			);
@@ -219,7 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D03F8F041AAD7C02002A0DA2 /* ViewController.m in Sources */,
+				D03F8F231AAD7CE0002A0DA2 /* BWLTableViewController.m in Sources */,
 				D03F8F011AAD7C02002A0DA2 /* AppDelegate.m in Sources */,
 				D03F8EFE1AAD7C02002A0DA2 /* main.m in Sources */,
 			);

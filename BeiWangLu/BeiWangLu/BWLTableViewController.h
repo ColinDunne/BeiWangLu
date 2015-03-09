@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BWLTableViewController.h
 //  BeiWangLu
 //
 //  Created by 钱辰 on 15/3/9.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BWLTableViewController : UITableViewController
 
 @end
-
