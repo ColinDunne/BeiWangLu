@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D00828191AAEBC4200D8D2FE /* AddItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D00828181AAEBC4200D8D2FE /* AddItemTableViewController.m */; };
 		D03F8EFE1AAD7C02002A0DA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8EFD1AAD7C02002A0DA2 /* main.m */; };
 		D03F8F011AAD7C02002A0DA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F001AAD7C02002A0DA2 /* AppDelegate.m */; };
 		D03F8F071AAD7C02002A0DA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D03F8F051AAD7C02002A0DA2 /* Main.storyboard */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D00828171AAEBC4200D8D2FE /* AddItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemTableViewController.h; sourceTree = "<group>"; };
+		D00828181AAEBC4200D8D2FE /* AddItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemTableViewController.m; sourceTree = "<group>"; };
 		D03F8EF81AAD7C02002A0DA2 /* BeiWangLu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeiWangLu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03F8EFC1AAD7C02002A0DA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D03F8EFD1AAD7C02002A0DA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 				D03F8F241AAD97D1002A0DA2 /* Model */,
 				D03F8F211AAD7CE0002A0DA2 /* BWLTableViewController.h */,
 				D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */,
+				D00828171AAEBC4200D8D2FE /* AddItemTableViewController.h */,
+				D00828181AAEBC4200D8D2FE /* AddItemTableViewController.m */,
 				D03F8F051AAD7C02002A0DA2 /* Main.storyboard */,
 				D03F8EFB1AAD7C02002A0DA2 /* Supporting Files */,
 			);
@@ -236,6 +241,7 @@
 				D03F8F231AAD7CE0002A0DA2 /* BWLTableViewController.m in Sources */,
 				D03F8F011AAD7C02002A0DA2 /* AppDelegate.m in Sources */,
 				D03F8EFE1AAD7C02002A0DA2 /* main.m in Sources */,
+				D00828191AAEBC4200D8D2FE /* AddItemTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (2M922Q6CCQ)";
 				INFOPLIST_FILE = BeiWangLu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -367,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Feng Hou (2M922Q6CCQ)";
 				INFOPLIST_FILE = BeiWangLu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,6 +434,7 @@
 				D03F8F1D1AAD7C02002A0DA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D03F8F1E1AAD7C02002A0DA2 /* Build configuration list for PBXNativeTarget "BeiWangLuTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +443,7 @@
 				D03F8F201AAD7C02002A0DA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
