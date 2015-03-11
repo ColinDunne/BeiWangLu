@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.itemToEdit != nil) {
+        self.title = @"Edit Item";
+        self.textField.text = self.itemToEdit.text;
+        self.doneBarButton.enabled = YES;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -31,12 +36,18 @@
 }
 
 - (IBAction)done:(id)sender {
-    NSLog(@"%@",self.textField.text);
+    //NSLog(@"%@",self.textField.text);
     //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    BWLItem *item = [[BWLItem alloc] init];
-    item.text = self.textField.text;
-    item.checked = NO;
-    [self.delegate addItemViewController:self didFinishAddingItem:item];
+    if (self.itemToEdit == nil) {
+        BWLItem *item = [[BWLItem alloc] init];
+        item.text = self.textField.text;
+        item.checked = NO;
+        [self.delegate addItemViewController:self didFinishAddingItem:item];
+    } else {
+        self.itemToEdit.text = self.textField.text;
+        [self.delegate addItemViewController:self didFinishEditingItem:self.itemToEdit];
+    }
+    
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

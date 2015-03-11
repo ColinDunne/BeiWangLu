@@ -49,10 +49,12 @@
 }
 
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withBWLItem:(BWLItem *)item {
+    UILabel *checkLabel = (UILabel *)[cell viewWithTag:1001];
+    
     if (item.checked) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        checkLabel.text = @"√";
     } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        checkLabel.text = @"";
     }
 }
 
@@ -122,6 +124,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)addItemViewController:(AddItemTableViewController *)controller didFinishEditingItem:(BWLItem *)item {
+    NSInteger index = [_items indexOfObject:item];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    [self configureTextForCell:cell withBWLItem:item];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -143,6 +154,13 @@
         UINavigationController *navigationController = segue.destinationViewController;
         AddItemTableViewController *controller = (AddItemTableViewController *)navigationController.topViewController;
         controller.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"EditItem"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        AddItemTableViewController *controller = (AddItemTableViewController *)navigationController.topViewController;
+        controller.delegate = self;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        controller.itemToEdit = [_items objectAtIndex:indexPath.row];
     }
 }
 

@@ -17,10 +17,13 @@
 
 - (void)addItemViewController:(AddItemTableViewController *)controller didFinishAddingItem:(BWLItem *)item;
 
+- (void)addItemViewController:(AddItemTableViewController *)controller didFinishEditingItem:(BWLItem *)item;
+
 @end
 
 @interface AddItemTableViewController : UITableViewController <UITextFieldDelegate>
 
+@property (nonatomic, strong) BWLItem *itemToEdit;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 @property (weak, nonatomic) id <AddItemViewControllerDelegate> delegate;
