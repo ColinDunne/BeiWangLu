@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BWLItem.h"
 
-@interface AddItemTableViewController : UITableViewController
+@class AddItemTableViewController;
+
+@protocol AddItemViewControllerDelegate <NSObject>
+
+- (void)addItemViewControllerDidCancel:(AddItemTableViewController *)controller;
+
+- (void)addItemViewController:(AddItemTableViewController *)controller didFinishAddingItem:(BWLItem *)item;
+
+@end
+
+@interface AddItemTableViewController : UITableViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
+@property (weak, nonatomic) id <AddItemViewControllerDelegate> delegate;
 
 - (IBAction)cancel:(id)sender;
 

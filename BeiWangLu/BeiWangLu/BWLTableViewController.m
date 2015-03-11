@@ -23,7 +23,7 @@
     _items = [[NSMutableArray alloc] initWithCapacity:20];
     BWLItem *_item = [[BWLItem alloc] init];
     _item = [[BWLItem alloc] init];
-    _item.text = @"观看嫦娥⻜飞天和⽟玉兔升空的视频";
+    _item.text = @"观看嫦娥⻜天和⽟兔升空的视频";
     _item.checked = YES;
     [_items addObject:_item];
     
@@ -33,17 +33,17 @@
     [_items addObject:_item];
     
     _item = [[BWLItem alloc] init];
-    _item.text = @"复习苍⽼老师的经典视频教程";
+    _item.text = @"复习iOS的经典视频教程";
     _item.checked = YES;
     [_items addObject:_item];
     
     _item = [[BWLItem alloc] init];
-    _item.text = @"去电影院看地⼼心引⼒力";
+    _item.text = @"去电影院看地⼼引⼒";
     _item.checked = NO;
     [_items addObject:_item];
     
     _item = [[BWLItem alloc] init];
-    _item.text = @"看⻄西甲巴萨新败的⽐比赛回放";
+    _item.text = @"看西甲巴萨新败的⽐赛回放";
     _item.checked = YES;
     [_items addObject:_item];
 }
@@ -59,20 +59,6 @@
 - (void)configureTextForCell:(UITableViewCell *)cell withBWLItem:(BWLItem *)item {
     UILabel *label = (UILabel *)[cell viewWithTag:1000];
     label.text = item.text;
-}
-
-- (IBAction)addItem:(id)sender {
-    NSInteger num = [_items count];
-    
-    BWLItem *item = [[BWLItem alloc] init];
-    item.text = @"我买的书什么时候才能到";
-    item.checked = NO;
-    [_items addObject:item];
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:num inSection:0];
-    NSArray *indexPaths = @[indexPath];
-    
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View Data Source
@@ -120,6 +106,21 @@
     }
 }
 
+#pragma mark - Add Item View Controller Delegate
+
+- (void)addItemViewControllerDidCancel:(AddItemTableViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addItemViewController:(AddItemTableViewController *)controller didFinishAddingItem:(BWLItem *)item {
+    NSInteger newRowIndex = [_items count];
+    [_items addObject:item];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 /*
 // Override to support rearranging the table view.
@@ -136,12 +137,13 @@
 */
 
 #pragma mark - Navigation
-/*
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"AddItem"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        AddItemTableViewController *controller = (AddItemTableViewController *)navigationController.topViewController;
+        controller.delegate = self;
+    }
 }
-*/
 
 @end

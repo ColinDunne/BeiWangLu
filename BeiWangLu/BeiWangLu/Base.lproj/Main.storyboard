@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YVy-hK-88I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YVy-hK-88I">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--BeiWangLu-->
@@ -21,7 +21,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checklist Item" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBF-HM-pMC">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact" fixedFrame="YES">
                                                 <rect key="frame" x="8" y="9" width="345" height="28"/>
@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" title="BeiWangLu" id="UnT-5l-8Vg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="GeD-st-fkH">
                             <connections>
-                                <segue destination="Amu-3J-nUQ" kind="presentation" id="Fve-JU-199"/>
+                                <segue destination="Amu-3J-nUQ" kind="presentation" identifier="AddItem" id="Fve-JU-199"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -63,8 +63,9 @@
             <objects>
                 <tableViewController id="aKI-yv-to3" customClass="AddItemTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="LRN-lG-URN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="Gp7-eR-WAD">
                                 <cells>
@@ -76,10 +77,13 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the Item" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oeq-iq-jt9">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="6" width="384" height="30"/>
                                                     </variation>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="aKI-yv-to3" id="rfu-8F-bK2"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <variation key="default">
@@ -108,13 +112,14 @@
                                 <action selector="cancel:" destination="aKI-yv-to3" id="VEP-bT-gpr"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="DEh-7F-6K7">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="DEh-7F-6K7">
                             <connections>
                                 <action selector="done:" destination="aKI-yv-to3" id="irb-hz-iVN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="DEh-7F-6K7" id="sRj-1q-7vG"/>
                         <outlet property="textField" destination="Oeq-iq-jt9" id="T9r-82-PkH"/>
                     </connections>
                 </tableViewController>

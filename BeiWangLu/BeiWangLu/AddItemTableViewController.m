@@ -26,16 +26,35 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate addItemViewControllerDidCancel:self];
 }
 
 - (IBAction)done:(id)sender {
     NSLog(@"%@",self.textField.text);
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    BWLItem *item = [[BWLItem alloc] init];
+    item.text = self.textField.text;
+    item.checked = NO;
+    [self.delegate addItemViewController:self didFinishAddingItem:item];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSLog(@"%@",newText);
+    if ([newText length] > 0) {
+        self.doneBarButton.enabled = YES;
+    } else {
+        self.doneBarButton.enabled = NO;
+    }
+    
+    return YES;
 }
 
 @end
