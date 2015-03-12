@@ -1,18 +1,18 @@
 //
-//  AddItemTableViewController.m
+//  ItemDetailTableViewController.m
 //  BeiWangLu
 //
 //  Created by 钱辰 on 15/3/10.
 //  Copyright (c) 2015年 qianchen. All rights reserved.
 //
 
-#import "AddItemTableViewController.h"
+#import "ItemDetailTableViewController.h"
 
-@interface AddItemTableViewController ()
+@interface ItemDetailTableViewController ()
 
 @end
 
-@implementation AddItemTableViewController
+@implementation ItemDetailTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,7 +32,7 @@
 
 - (IBAction)cancel:(id)sender {
     //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    [self.delegate addItemViewControllerDidCancel:self];
+    [self.delegate itemDetailViewControllerDidCancel:self];
 }
 
 - (IBAction)done:(id)sender {
@@ -42,10 +42,10 @@
         BWLItem *item = [[BWLItem alloc] init];
         item.text = self.textField.text;
         item.checked = NO;
-        [self.delegate addItemViewController:self didFinishAddingItem:item];
+        [self.delegate itemDetailViewController:self didFinishAddingItem:item];
     } else {
         self.itemToEdit.text = self.textField.text;
-        [self.delegate addItemViewController:self didFinishEditingItem:self.itemToEdit];
+        [self.delegate itemDetailViewController:self didFinishEditingItem:self.itemToEdit];
     }
     
 }

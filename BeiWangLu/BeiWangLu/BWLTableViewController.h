@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddItemTableViewController.h"
+#import "ItemDetailTableViewController.h"
 
-@interface BWLTableViewController : UITableViewController <AddItemViewControllerDelegate>
+@interface BWLTableViewController : UITableViewController <ItemDetailViewControllerDelegate>
 
 @end

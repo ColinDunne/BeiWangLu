@@ -108,13 +108,13 @@
     }
 }
 
-#pragma mark - Add Item View Controller Delegate
+#pragma mark - Item Detail View Controller Delegate
 
-- (void)addItemViewControllerDidCancel:(AddItemTableViewController *)controller {
+- (void)itemDetailViewControllerDidCancel:(ItemDetailTableViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)addItemViewController:(AddItemTableViewController *)controller didFinishAddingItem:(BWLItem *)item {
+- (void)itemDetailViewController:(ItemDetailTableViewController *)controller didFinishAddingItem:(BWLItem *)item {
     NSInteger newRowIndex = [_items count];
     [_items addObject:item];
     
@@ -124,7 +124,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)addItemViewController:(AddItemTableViewController *)controller didFinishEditingItem:(BWLItem *)item {
+- (void)itemDetailViewController:(ItemDetailTableViewController *)controller didFinishEditingItem:(BWLItem *)item {
     NSInteger index = [_items indexOfObject:item];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -152,11 +152,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"AddItem"]) {
         UINavigationController *navigationController = segue.destinationViewController;
-        AddItemTableViewController *controller = (AddItemTableViewController *)navigationController.topViewController;
+        ItemDetailTableViewController *controller = (ItemDetailTableViewController *)navigationController.topViewController;
         controller.delegate = self;
     } else if ([segue.identifier isEqualToString:@"EditItem"]) {
         UINavigationController *navigationController = segue.destinationViewController;
-        AddItemTableViewController *controller = (AddItemTableViewController *)navigationController.topViewController;
+        ItemDetailTableViewController *controller = (ItemDetailTableViewController *)navigationController.topViewController;
         controller.delegate = self;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
