@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BWLItem : NSObject
+@interface BWLItem : NSObject <NSCoding>
 @property (nonatomic,copy) NSString *text;
 @property (nonatomic,assign) BOOL checked;
 

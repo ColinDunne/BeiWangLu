@@ -17,35 +17,34 @@
     NSMutableArray *_items;
 }
 
+#pragma mark - Initialization
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        [self loadBWLItems];
+    }
+    
+    return self;
+}
+
+- (void)loadBWLItems {
+    NSString *path = [self dataFilePath];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        _items = [unarchiver decodeObjectForKey:@"BWLItems"];
+        [unarchiver finishDecoding];
+    } else {
+        _items = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _items = [[NSMutableArray alloc] initWithCapacity:20];
-    BWLItem *_item = [[BWLItem alloc] init];
-    _item = [[BWLItem alloc] init];
-    _item.text = @"观看嫦娥⻜天和⽟兔升空的视频";
-    _item.checked = YES;
-    [_items addObject:_item];
-    
-    _item = [[BWLItem alloc] init];
-    _item.text = @"了解Sony a7和MBP的最新价格";
-    _item.checked = NO;
-    [_items addObject:_item];
-    
-    _item = [[BWLItem alloc] init];
-    _item.text = @"复习iOS的经典视频教程";
-    _item.checked = YES;
-    [_items addObject:_item];
-    
-    _item = [[BWLItem alloc] init];
-    _item.text = @"去电影院看地⼼引⼒";
-    _item.checked = NO;
-    [_items addObject:_item];
-    
-    _item = [[BWLItem alloc] init];
-    _item.text = @"看西甲巴萨新败的⽐赛回放";
-    _item.checked = YES;
-    [_items addObject:_item];
 }
 
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withBWLItem:(BWLItem *)item {
@@ -95,6 +94,7 @@
     [item toggleChecked];
     
     [self configureCheckmarkForCell:cell withBWLItem:item];
+    [self saveBWLItems];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -103,6 +103,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_items removeObjectAtIndex:indexPath.row];
+        [self saveBWLItems];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -120,6 +121,7 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self saveBWLItems];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -130,6 +132,8 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     [self configureTextForCell:cell withBWLItem:item];
+    [self saveBWLItems];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -162,6 +166,30 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.itemToEdit = [_items objectAtIndex:indexPath.row];
     }
+}
+
+#pragma mark - File Saving
+
+- (NSString *)documentsDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    
+    return documentsDirectory;
+}
+
+- (NSString *)dataFilePath {
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"BWLItems.plist"];
+}
+
+- (void)saveBWLItems {
+    // serialization
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:_items forKey:@"BWLItems"];
+    [archiver finishEncoding];
+    
+    // saving
+    [data writeToFile:[self dataFilePath] atomically:YES];
 }
 
 @end
