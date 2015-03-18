@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ItemDetailTableViewController.h"
+#import "BWLList.h"
 
 @interface BWLTableViewController : UITableViewController <ItemDetailViewControllerDelegate>
+
+@property (nonatomic, strong) BWLList *bwlList;
 
 @end

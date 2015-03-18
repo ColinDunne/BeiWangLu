@@ -45,6 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = self.bwlList.name;
 }
 
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell withBWLItem:(BWLItem *)item {
