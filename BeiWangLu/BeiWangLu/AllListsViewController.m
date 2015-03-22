@@ -79,12 +79,51 @@
     [self performSegueWithIdentifier:@"Show List" sender:list];
 }
 
+#pragma mark - Table View Data Source
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [_lists removeObjectAtIndex:indexPath.row];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+#pragma mark - List Detail View Delegate
+
+- (void)listDetailViewControllerDidCancel:(ListDetailTableViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)listDetailViewController:(ListDetailTableViewController *)controller didFinishAddingBWLList:(BWLList *)list {
+    NSInteger newRowIndex = [_lists count];
+    [_lists addObject:list];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)listDetailViewController:(ListDetailTableViewController *)controller didFinishEditingBWLList:(BWLList *)list {
+    NSInteger index = [_lists indexOfObject:list];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.text = list.name;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Show List"]) {
         BWLTableViewController *controller = segue.destinationViewController;
         controller.bwlList = sender;
+    } else if ([segue.identifier isEqualToString:@"Add List"]) {
+        UINavigationController *naviController = segue.destinationViewController;
+        ListDetailTableViewController *controller = (ListDetailTableViewController *)naviController.topViewController;
+        controller.delegate = self;
+        controller.listToEdit = nil;
     }
 }
 

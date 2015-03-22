@@ -16,6 +16,7 @@
 		D03F8F181AAD7C02002A0DA2 /* BeiWangLuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F171AAD7C02002A0DA2 /* BeiWangLuTests.m */; };
 		D03F8F231AAD7CE0002A0DA2 /* BWLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */; };
 		D03F8F271AAD9803002A0DA2 /* BWLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D03F8F261AAD9803002A0DA2 /* BWLItem.m */; };
+		D06B1E7A1ABEF3C900044148 /* ListDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06B1E791ABEF3C900044148 /* ListDetailTableViewController.m */; };
 		D09B97EB1AB2DCD600C47AC2 /* AllListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09B97EA1AB2DCD600C47AC2 /* AllListsViewController.m */; };
 		D09B97EE1AB70AF400C47AC2 /* BWLList.m in Sources */ = {isa = PBXBuildFile; fileRef = D09B97ED1AB70AF400C47AC2 /* BWLList.m */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,8 @@
 		D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWLTableViewController.m; sourceTree = "<group>"; };
 		D03F8F251AAD9803002A0DA2 /* BWLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWLItem.h; sourceTree = "<group>"; };
 		D03F8F261AAD9803002A0DA2 /* BWLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWLItem.m; sourceTree = "<group>"; };
+		D06B1E781ABEF3C900044148 /* ListDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDetailTableViewController.h; sourceTree = "<group>"; };
+		D06B1E791ABEF3C900044148 /* ListDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDetailTableViewController.m; sourceTree = "<group>"; };
 		D09B97E91AB2DCD600C47AC2 /* AllListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllListsViewController.h; sourceTree = "<group>"; };
 		D09B97EA1AB2DCD600C47AC2 /* AllListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllListsViewController.m; sourceTree = "<group>"; };
 		D09B97EC1AB70AF400C47AC2 /* BWLList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWLList.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				D03F8F241AAD97D1002A0DA2 /* Model */,
 				D09B97E91AB2DCD600C47AC2 /* AllListsViewController.h */,
 				D09B97EA1AB2DCD600C47AC2 /* AllListsViewController.m */,
+				D06B1E781ABEF3C900044148 /* ListDetailTableViewController.h */,
+				D06B1E791ABEF3C900044148 /* ListDetailTableViewController.m */,
 				D03F8F211AAD7CE0002A0DA2 /* BWLTableViewController.h */,
 				D03F8F221AAD7CE0002A0DA2 /* BWLTableViewController.m */,
 				D00828171AAEBC4200D8D2FE /* ItemDetailTableViewController.h */,
@@ -247,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06B1E7A1ABEF3C900044148 /* ListDetailTableViewController.m in Sources */,
 				D03F8F271AAD9803002A0DA2 /* BWLItem.m in Sources */,
 				D03F8F231AAD7CE0002A0DA2 /* BWLTableViewController.m in Sources */,
 				D09B97EB1AB2DCD600C47AC2 /* AllListsViewController.m in Sources */,
