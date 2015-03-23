@@ -24,23 +24,7 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        _lists = [[NSMutableArray alloc] initWithCapacity:20];
-        
-        BWLList *list = [[BWLList alloc] init];
-        list.name = @"娱乐";
-        [_lists addObject:list];
-        
-        list = [[BWLList alloc] init];
-        list.name = @"工作";
-        [_lists addObject:list];
-        
-        list = [[BWLList alloc] init];
-        list.name = @"学习";
-        [_lists addObject:list];
-        
-        list = [[BWLList alloc] init];
-        list.name = @"家庭";
-        [_lists addObject:list];
+        [self loadBWLLists];
     }
     
     return self;
@@ -77,6 +61,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BWLList *list = [_lists objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"Show List" sender:list];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    UINavigationController *naviController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListNavigationController"];
+    
+    ListDetailTableViewController *controller = (ListDetailTableViewController *)naviController.topViewController;
+    controller.delegate = self;
+    BWLList *list = [_lists objectAtIndex:indexPath.row];
+    controller.listToEdit = list;
+    
+    [self presentViewController:naviController animated:YES completion:nil];
 }
 
 #pragma mark - Table View Data Source
@@ -124,6 +119,40 @@
         ListDetailTableViewController *controller = (ListDetailTableViewController *)naviController.topViewController;
         controller.delegate = self;
         controller.listToEdit = nil;
+    }
+}
+
+#pragma mark - Save & Load
+
+- (NSString *)documentsDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    return documentsDirectory;
+}
+
+- (NSString *)dataFilePath {
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"BWLList.plist"];
+}
+
+- (void)saveBWLLists {
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    [archiver encodeObject:_lists forKey:@"BWLList"];
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
+}
+
+- (void)loadBWLLists {
+    NSString *path = [self dataFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        
+        _lists = [unarchiver decodeObjectForKey:@"BWLList"];
+        [unarchiver finishDecoding];
+    } else {
+        _lists = [[NSMutableArray alloc] initWithCapacity:20];
     }
 }
 

@@ -35,7 +35,7 @@
         <!--Navigation Controller-->
         <scene sceneID="BVy-hV-CfW">
             <objects>
-                <navigationController id="ZSh-lq-3nm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ListNavigationController" id="ZSh-lq-3nm" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hPN-KY-mkv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

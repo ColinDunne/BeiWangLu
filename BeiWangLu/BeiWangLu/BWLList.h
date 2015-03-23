@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BWLList : NSObject
+@interface BWLList : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSMutableArray *items;
 
 @end
