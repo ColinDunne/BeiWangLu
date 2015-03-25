@@ -14,21 +14,9 @@
 
 @end
 
-@implementation AllListsViewController {
-    NSMutableArray *_lists;
-}
+@implementation AllListsViewController
 
 #pragma mark - Initialization
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    
-    if (self) {
-        [self loadBWLLists];
-    }
-    
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +27,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [_lists count];
+    return [self.dataModel.lists count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -49,7 +37,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    BWLList *list = [_lists objectAtIndex:indexPath.row];
+    BWLList *list = [self.dataModel.lists objectAtIndex:indexPath.row];
     cell.textLabel.text = list.name;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -59,7 +47,7 @@
 #pragma mark - Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BWLList *list = [_lists objectAtIndex:indexPath.row];
+    BWLList *list = [self.dataModel.lists objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"Show List" sender:list];
 }
 
@@ -68,7 +56,7 @@
     
     ListDetailTableViewController *controller = (ListDetailTableViewController *)naviController.topViewController;
     controller.delegate = self;
-    BWLList *list = [_lists objectAtIndex:indexPath.row];
+    BWLList *list = [self.dataModel.lists objectAtIndex:indexPath.row];
     controller.listToEdit = list;
     
     [self presentViewController:naviController animated:YES completion:nil];
@@ -77,7 +65,7 @@
 #pragma mark - Table View Data Source
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_lists removeObjectAtIndex:indexPath.row];
+    [self.dataModel.lists removeObjectAtIndex:indexPath.row];
     
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -89,8 +77,8 @@
 }
 
 - (void)listDetailViewController:(ListDetailTableViewController *)controller didFinishAddingBWLList:(BWLList *)list {
-    NSInteger newRowIndex = [_lists count];
-    [_lists addObject:list];
+    NSInteger newRowIndex = [self.dataModel.lists count];
+    [self.dataModel.lists addObject:list];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -99,7 +87,7 @@
 }
 
 - (void)listDetailViewController:(ListDetailTableViewController *)controller didFinishEditingBWLList:(BWLList *)list {
-    NSInteger index = [_lists indexOfObject:list];
+    NSInteger index = [self.dataModel.lists indexOfObject:list];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -119,40 +107,6 @@
         ListDetailTableViewController *controller = (ListDetailTableViewController *)naviController.topViewController;
         controller.delegate = self;
         controller.listToEdit = nil;
-    }
-}
-
-#pragma mark - Save & Load
-
-- (NSString *)documentsDirectory {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths firstObject];
-    return documentsDirectory;
-}
-
-- (NSString *)dataFilePath {
-    return [[self documentsDirectory] stringByAppendingPathComponent:@"BWLList.plist"];
-}
-
-- (void)saveBWLLists {
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    
-    [archiver encodeObject:_lists forKey:@"BWLList"];
-    [archiver finishEncoding];
-    [data writeToFile:[self dataFilePath] atomically:YES];
-}
-
-- (void)loadBWLLists {
-    NSString *path = [self dataFilePath];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        
-        _lists = [unarchiver decodeObjectForKey:@"BWLList"];
-        [unarchiver finishDecoding];
-    } else {
-        _lists = [[NSMutableArray alloc] initWithCapacity:20];
     }
 }
 
