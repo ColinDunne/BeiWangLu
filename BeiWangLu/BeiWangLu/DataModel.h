@@ -12,6 +12,10 @@
 
 @property (nonatomic, strong) NSMutableArray *lists;
 
+- (NSInteger)indexOfSelectedBWLList;
+
+- (void)setIndexOfSelectedChecklist:(NSInteger)index;
+
 - (void)saveBWLLists;
 
 @end

@@ -23,6 +23,19 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.navigationController.delegate = self;
+    
+    NSInteger index = [self.dataModel indexOfSelectedBWLList];
+    
+    if (index >= 0 && index < [self.dataModel.lists count]) {
+        BWLList *list = [self.dataModel.lists objectAtIndex:index];
+        [self performSegueWithIdentifier:@"Show List" sender:list];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -47,7 +60,10 @@
 #pragma mark - Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.dataModel setIndexOfSelectedChecklist:indexPath.row];
+    
     BWLList *list = [self.dataModel.lists objectAtIndex:indexPath.row];
+    
     [self performSegueWithIdentifier:@"Show List" sender:list];
 }
 
@@ -94,6 +110,14 @@
     cell.textLabel.text = list.name;
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Navigation Controller Delegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (viewController == self) {
+        [self.dataModel setIndexOfSelectedChecklist:-1];
+    }
 }
 
 #pragma mark - Navigation

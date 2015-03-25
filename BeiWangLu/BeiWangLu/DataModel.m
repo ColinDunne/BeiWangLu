@@ -10,13 +10,33 @@
 
 @implementation DataModel
 
+#pragma mark - Initialization
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         [self loadBWLLists];
+        [self registerDefaults];
     }
     return self;
 }
+
+- (void)registerDefaults {
+    NSDictionary *dictionary = @{@"BWLListIndex" : @-1};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+}
+
+#pragma mark - Get & Set Current Index
+
+- (NSInteger)indexOfSelectedBWLList {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"BWLListIndex"];
+}
+
+- (void)setIndexOfSelectedChecklist:(NSInteger)index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"BWLListIndex"];
+}
+
+#pragma mark - Save & Load
 
 - (NSString *)documentsDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
